@@ -3,35 +3,44 @@ from nltk.corpus import words
 
 nltk.download('words')
 
-def find_words_by_criteria(word_length: int, forbidden_letters: list, must_have_letters: list, correct_letters: dict) -> list:
-    all_words:list = words.words()
-    matching_words:list = []
+def find_words_by_criteria(word_length: int, forbidden_letters: set, must_have_letters: set, correct_letters: dict, incorrect_position_letters: dict) -> list:
+    all_words = words.words()
+    matching_words = []
 
     for word in all_words:
-        if (
-            len(word) == word_length
-            and not any(letter in word.lower() for letter in forbidden_letters)
-            and all(letter in word.lower() for letter in must_have_letters)
-            and all(word[idx].lower() == char for idx, char in correct_letters.items())
-            and word[0].lower() != "c"
-            and word[3].lower() != "t"
-            and word[5].lower() != "e"
-        ):
-            matching_words.append(word)
+        word_lower = word.lower()
+        if len(word) != word_length: 
+            continue
+        
+        if any(letter in word_lower for letter in forbidden_letters):
+            continue
+        
+        if not must_have_letters.issubset(word_lower):
+            continue
+        
+        if any(word_lower[idx] != char for idx, char in correct_letters.items()):
+            continue
+        
+        if any(word_lower[idx] in chars for idx, chars in incorrect_position_letters.items()):
+            continue
+        
+        matching_words.append(word)
 
     return matching_words
 
 def main() -> None:
     words_to_output = 10
-    word_length = 6
-    forbidden_letters = ["r", "s", "d", "g", "o", "l", "n"]
-    must_have_letters = ["a", "t", "e", "c"]
+    word_length = 7
+    forbidden_letters = {"d", "a", "g", "s"}
+    must_have_letters = {"r", "o", "n"}
     correct_letters = {
-        0: "t",
-        1: "a",
-        2: "c"
+        5: "n"
     }
-    matching_words = find_words_by_criteria(word_length, forbidden_letters, must_have_letters, correct_letters)
+    incorrect_position_letters = {
+        1: ["i", "r"],
+        4: ["n", "i"]
+    }
+    matching_words = find_words_by_criteria(word_length, forbidden_letters, must_have_letters, correct_letters, incorrect_position_letters)
 
     if matching_words:
         print(

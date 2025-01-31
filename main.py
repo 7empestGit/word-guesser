@@ -29,17 +29,27 @@ def find_words_by_criteria(word_length: int, forbidden_letters: set, must_have_l
     return matching_words
 
 def main() -> None:
-    words_to_output = 10
-    word_length = 7
-    forbidden_letters = {"d", "a", "g", "s"}
-    must_have_letters = {"r", "o", "n"}
-    correct_letters = {
-        5: "n"
-    }
-    incorrect_position_letters = {
-        1: ["i", "r"],
-        4: ["n", "i"]
-    }
+    words_to_output = int(input("Enter the number of words to output: "))
+    word_length = int(input("Enter the word length: "))
+    forbidden_letters = set(input("Enter forbidden letters (comma separated): ").split(","))
+    must_have_letters = set(input("Enter must-have letters (comma separated): ").split(","))
+    
+    correct_letters = {}
+    while True:
+        idx = input("Enter the index for a correct letter (or 'done' to finish): ")
+        if idx.lower() == 'done':
+            break
+        letter = input(f"Enter the letter for index {idx}: ")
+        correct_letters[int(idx)] = letter
+    
+    incorrect_position_letters = {}
+    while True:
+        idx = input("Enter the index for incorrect position letters (or 'done' to finish): ")
+        if idx.lower() == 'done':
+            break
+        letters = input(f"Enter the letters for index {idx} (comma separated): ").split(",")
+        incorrect_position_letters[int(idx)] = letters
+
     matching_words = find_words_by_criteria(word_length, forbidden_letters, must_have_letters, correct_letters, incorrect_position_letters)
 
     if matching_words:

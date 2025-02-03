@@ -1,27 +1,25 @@
-# Word Guesser
+# word-guesser
 
-### Simple word guesser for Binance's WOTD (Word Of The Day)
-
-## Description
+## 🌟 Overview
 
 This is a simple Python script that helps you guess words based on specific criteria. It uses the NLTK library to access a list of words and filters them based on the length, forbidden letters, must-have letters, correct letters at specific positions, and incorrect letters at specific positions.
 
-## Requirements
+## 📋 Requirements
 
 - Python 3.x
 - NLTK library
 
 You can install the required library using the following command:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## 🚀 Usage
 
 Run the script using Python:
 
-```
+```bash
 python main.py
 ```
 
@@ -31,28 +29,16 @@ You will be prompted to enter the following details:
 2. Word length.
 3. Forbidden letters (comma separated).
 4. Must-have letters (comma separated).
-5. Correct letters at specific positions.
-6. Incorrect letters at specific positions.
 
-The script will then output the words that match the given criteria.
+## 🤝 Contributions
 
-## Example
+Contributions are welcome! If you have any suggestions, bug reports, or improvements, feel free to open an issue or submit a pull request.
 
-```
-Enter the number of words to output: 5
-Enter the word length: 5
-Enter forbidden letters (comma separated): a,e,i,o,u
-Enter must-have letters (comma separated): t,r
-Enter the index for a correct letter (or 'done' to finish): 0
-Enter the letter for index 0: t
-Enter the index for a correct letter (or 'done' to finish): done
-Enter the index for incorrect position letters (or 'done' to finish): 1
-Enter the letters for index 1 (comma separated): r
-Enter the index for incorrect position letters (or 'done' to finish): done
-```
+## 📜 License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
-The script will output the first 5 words that match the criteria.
+## 👤 Author
+Ismayil Mammadov ([7empestGit](https://github.com/7empestGit))
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🙏 Acknowledgments
+The project uses several open-source libraries. Thanks to the contributors of `nltk`.

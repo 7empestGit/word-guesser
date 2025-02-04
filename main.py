@@ -36,16 +36,16 @@ def main() -> None:
     
     correct_letters = {}
     while True:
-        idx = input("Enter the index for a correct letter (or 'done' to finish): ")
-        if idx.lower() == 'done':
+        idx = input("Enter the index for a correct letter (or press Enter to finish): ")
+        if not idx:
             break
         letter = input(f"Enter the letter for index {idx}: ")
         correct_letters[int(idx)] = letter
     
     incorrect_position_letters = {}
     while True:
-        idx = input("Enter the index for incorrect position letters (or 'done' to finish): ")
-        if idx.lower() == 'done':
+        idx = input("Enter the index for incorrect position letters (or press Enter to finish): ")
+        if not idx:
             break
         letters = input(f"Enter the letters for index {idx} (comma separated): ").split(",")
         incorrect_position_letters[int(idx)] = letters
